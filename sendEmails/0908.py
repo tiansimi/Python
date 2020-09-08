@@ -16,7 +16,7 @@ def _format_addr(s):
 # 邮件对象
 msg = MIMEMultipart()
 from_addr = "970280628@qq.com"
-password = "cahiijpanwyfbehb666"
+password = "666"
 to_addr = "qi.tian@iconbow.com"
 # msg = MIMEText("hello,你好啊，我是米宝爸爸！", "plain", "utf-8")
 msg["From"] = Header(from_addr)
@@ -26,8 +26,8 @@ msg.attach(MIMEText("hello,你好啊，我是米宝爸爸！", "plain", "utf-8")
 msg.attach(MIMEText('<html><body><h1>Hello</h1>' +
                     '<p><img src="cid:0"></p>' +
                     '</body></html>', 'html', 'utf-8'))
-with open("/Users/tiansimi/Desktop/爱接力/图片/IMG_6271.JPG","rb+") as f:
-    mime = MIMEBase("image","jpg",filename = "IMG_6271.JPG")
+with open("/Users/tiansimi/Desktop/爱接力/图片/IMG_6271.JPG", "rb+") as f:
+    mime = MIMEBase("image", "jpg", filename="IMG_6271.JPG")
     mime.add_header('Content-Disposition', 'attachment', filename='IMG_6271.JPG')
     mime.add_header('Content-ID', '<0>')
     mime.add_header('X-Attachment-Id', '0')
@@ -35,10 +35,9 @@ with open("/Users/tiansimi/Desktop/爱接力/图片/IMG_6271.JPG","rb+") as f:
     encoders.encode_base64(mime)
     msg.attach(mime)
 
-        
 smtp_server = "smtp.qq.com"
 server = smtplib.SMTP(smtp_server, 25)  # smtp协议默认端口是25
-server.set_debuglevel(1)  #打印出和SMTP服务器交互的日志信息
+server.set_debuglevel(1)  # 打印出和SMTP服务器交互的日志信息
 server.login(from_addr, password)
 server.sendmail(from_addr, [to_addr], msg.as_string())  # 发件人由于可以一次发给多个人，所以传入一个list
 server.quit()
